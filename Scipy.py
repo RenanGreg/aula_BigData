@@ -159,4 +159,133 @@ initial_params = [1, 1, 1]
 result = least_squares(residuals, initial_params, args=(x_data, y_data))
 print('Parametros ajustados:', result.x)
 
-#pagina 23 
+
+
+
+
+from scipy.optimize import linprog
+
+C = [-1, -2]
+A = [[-1, 2], [1, -1]]
+B = [2, 2]
+
+result = linprog(c, A_uB=A, B_uB=B, bounds=(0,None))
+print('Solução otima:', result.x)
+print ('Valor otimo da função:', result.fun)
+
+
+
+
+
+
+
+from scipy.optimize import fsolve
+
+def equations(vars):
+    x, y = vars
+    eq1 = x**2 + y**2 - 4
+    eq2 = x**2 - y - 1
+    return [eq1, eq2]
+
+initial_guess = [1, 1]
+
+solution = fsolve(equations, initial_guess)
+print ('Soluçoes: x =', solution[0], ', y =', solution[1])
+
+
+
+
+
+
+from scipy.integrate import quad
+
+def func(x):
+    return x**2
+
+result, error = quad(func, 0, 1)
+print ('Valor integral:', result)
+print ('Erro estimado', error)
+
+
+
+
+
+
+
+from scipy.integraten import quad_vec
+
+def func(x):
+    return [x**2, x**3]
+
+result = quad_vec(func, 0, 1)
+print ('Valor da integral vetorizada:', result)
+
+
+
+
+
+
+
+from scipy.integrate import odeint
+
+def dydt(y, t):
+    return -2 * y
+
+t = np.linspace (0, 5, 100)
+
+y0 = 1
+
+solution = odeint(dydt, y0, t)
+print ('Solução correspondente y(t):', solution.flatten())
+
+
+
+
+
+
+
+import numpy as np
+from scipy.interpolate import interp1d
+import matplotlib.pyplot as plt
+
+x = np.array([0, 1, 2, 3, 4])
+y = np.array([0, 1, 4, 9, 16])
+
+f = interp1d (x, y, kind='linear')
+
+x_new = np.linspace(0, 4, 50)
+y_new = f(x_new)
+
+plt.plot(x, y, 'o', label='Dados originais')
+plt.plot(x_new, y_new, '-', label='Iterpretação Linear')
+plt.legend()
+plt.show()
+
+
+
+
+
+
+
+from scipy.iterpolate import interp2d
+
+x = np.linspace(0, 4, 5)
+y = np.linspace(0, 4, 5)
+z = np.array([[0, 1, 4, 9, 16],
+              [1, 2, 5, 10, 17],
+              [4, 5, 8, 13, 20],
+              [9, 10, 13, 18, 25],
+              [16, 17, 20, 25, 32]])
+
+f = interp2d(x, y, z, kind='Linear')
+
+x_new = np.linspace(0, 4, 30)
+y_new = np.linspace(0, 4, 30)
+z_new = f(x_new, y_new)
+
+x, y = np.meshgrind(x_new, y_new)
+plt.contourf(x, y, z_new, levels=20)
+plt.colobar()
+plt.show()
+
+
