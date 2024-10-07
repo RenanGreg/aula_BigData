@@ -110,3 +110,53 @@ print('Valor minimo da função:', result.fun)
 
 
 
+
+
+from scipy.optimize import root
+
+def func(x):
+    return x**2 - 4
+
+x0 = 1.0
+
+result = root(func, x0)
+print('Raiz encontrada:', result.x)
+
+
+
+
+
+
+from scipy.optimize import curve_fit
+import numpy as np
+
+x_data = np.array ([0, 1, 2, 3, 4])
+y_data = np.array ([2.1, 2.9, 4.2, 5.1, 6.2])
+
+def linear(x, A, B):
+    return A * x + B
+
+params, covariance = curve_fit(linear, x_data, y_data)
+A, B = params
+print('Coeficiente ajustados: A=', A, 'B=', B)
+
+
+
+
+
+
+from scipy.optimize import least_squares
+
+x_data = np.array ([0, 1, 2, 3, 4])
+y_data = np.array ([1, 1.8, 3.3, 4.5, 6.1])
+
+def residuals(params, x, y):
+    A, B, C = params
+    return y - (A * x**2 + B * x + C)
+
+initial_params = [1, 1, 1]
+
+result = least_squares(residuals, initial_params, args=(x_data, y_data))
+print('Parametros ajustados:', result.x)
+
+#pagina 23 
