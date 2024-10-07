@@ -19,10 +19,22 @@ print(A_inv)
 
 
 
+
+
+
+
+
 from scipy.linal import det
 
 determinante = det(A)
 print(determinante)
+
+
+
+
+
+
+
 
 
 
@@ -36,12 +48,26 @@ print('Autovetores:', vetores)
 
 
 
+
+
+
+
+
+
+
 from scipy.linalg import svd
 
 U, S, Vh = svd(A)
 print('U:', U)
 print('S:', S)
 print('Vh:', Vh)
+
+
+
+
+
+
+
 
 
 
@@ -52,6 +78,11 @@ A = np.array ([[4, 12], [12, 37]])
 
 L = cholesky(A, lower = true )
 print('L:', L)
+
+
+
+
+
 
 
 
@@ -82,6 +113,11 @@ print('U:', U)
 
 
 
+
+
+
+
+
 from scipy.optimize import minimize
 
 def func(x):
@@ -92,6 +128,11 @@ x0 = [0, 0]
 result = minimize (func, x0, method='BFGS')
 print('Ponto de minimo:', result.x)
 print('Valor minimo da função:', result.fun)
+
+
+
+
+
 
 
 
@@ -112,6 +153,11 @@ print('Valor minimo da função:', result.fun)
 
 
 
+
+
+
+
+
 from scipy.optimize import root
 
 def func(x):
@@ -121,6 +167,9 @@ x0 = 1.0
 
 result = root(func, x0)
 print('Raiz encontrada:', result.x)
+
+
+
 
 
 
@@ -145,6 +194,10 @@ print('Coeficiente ajustados: A=', A, 'B=', B)
 
 
 
+
+
+
+
 from scipy.optimize import least_squares
 
 x_data = np.array ([0, 1, 2, 3, 4])
@@ -163,6 +216,12 @@ print('Parametros ajustados:', result.x)
 
 
 
+
+
+
+
+
+
 from scipy.optimize import linprog
 
 C = [-1, -2]
@@ -172,6 +231,9 @@ B = [2, 2]
 result = linprog(c, A_uB=A, B_uB=B, bounds=(0,None))
 print('Solução otima:', result.x)
 print ('Valor otimo da função:', result.fun)
+
+
+
 
 
 
@@ -197,6 +259,10 @@ print ('Soluçoes: x =', solution[0], ', y =', solution[1])
 
 
 
+
+
+
+
 from scipy.integrate import quad
 
 def func(x):
@@ -205,6 +271,9 @@ def func(x):
 result, error = quad(func, 0, 1)
 print ('Valor integral:', result)
 print ('Erro estimado', error)
+
+
+
 
 
 
@@ -226,6 +295,9 @@ print ('Valor da integral vetorizada:', result)
 
 
 
+
+
+
 from scipy.integrate import odeint
 
 def dydt(y, t):
@@ -237,6 +309,8 @@ y0 = 1
 
 solution = odeint(dydt, y0, t)
 print ('Solução correspondente y(t):', solution.flatten())
+
+
 
 
 
